@@ -6,11 +6,15 @@ the `PathConstraint`.
 import numpy as np
 from enum import Enum
 from utils import inv_dyn, compute_jacobian_wrench
-from _CythonUtils import _create_velocity_constraint
 from scipy.linalg import block_diag
 from TOPP import INFTY
 import logging
 logger = logging.getLogger(__name__)
+
+try:
+    from _CythonUtils import _create_velocity_constraint
+except ImportError:
+    pass
 
 
 class PathConstraintKind(Enum):
